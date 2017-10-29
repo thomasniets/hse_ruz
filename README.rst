@@ -38,7 +38,7 @@ Usage
 
     from ruz import RUZ
     api = RUZ()
-    assert api.v == 1
+    assert api.v == 2
     assert api.person_lessons("mymail@edu.hse.ru")
 
 

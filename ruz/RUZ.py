@@ -20,6 +20,9 @@ class RUZ(object):
         Both CamelCase and snake_notation supported for method names and
         params. CamelCase is depreciated.
 
+        `findText` API key was removed from module as depreciated. Use _get
+        method directly to access this field in API request.
+
         Usage
         -----
         >>> api = RUZ()
@@ -174,9 +177,9 @@ class RUZ(object):
         """
         if not isinstance(email, str):
             raise ValueError("Expect str, got: {}".format(type(email)))
-        domain = email
-        if r"@" in email:
-            domain = email.split(r'@')[-1]
+        domain = email.lower()
+        if r"@" in domain:
+            domain = domain.split(r'@')[-1]
         if domain == "edu.hse.ru":
             return True
         elif domain == "hse.ru":
@@ -307,7 +310,7 @@ class RUZ(object):
         elif not re.match(pattern, email):
             raise ValueError("Wrong email address: {}".format(email))
 
-        domain = email.split('@')[-1]
+        domain = email.lower().split('@')[-1]
         if domain not in EMAIL_DOMAINS:
             raise ValueError("Wrong email domain: {}".format(domain))
         del domain
@@ -372,6 +375,7 @@ class RUZ(object):
                 ...
             ValueError: No email needed for receiverType: 2
         """
+        email = email.lower()
         RUZ.check_email(email)
 
         domain = email.split('@')[-1]

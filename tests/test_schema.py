@@ -1,6 +1,6 @@
 """ Test that current response schema is still actual """
 
-from tests import TRUSTED_EMAILS, TRUSTED_GROUP_ID, TRUSTED_STREAM_ID, logging
+from tests import TRUSTED_EMAILS, TRUSTED_GROUP_ID, logging
 
 import ruz
 from ruz.schema import RESPONSE_SCHEMA
@@ -54,12 +54,6 @@ def test_staffOfGroup():
 
 def test_streams():
     _test_schema(schema=RESPONSE_SCHEMA['streams'], response=ruz.streams())
-
-
-def test_staffOfStreams():
-    logging.warning("Stream id may be deactivated in few years!")
-    _test_schema(schema=RESPONSE_SCHEMA['staffOfStreams'],
-                 response=ruz.staff_of_streams(stream_id=TRUSTED_STREAM_ID))
 
 
 def test_lecturers():

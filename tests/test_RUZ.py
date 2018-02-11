@@ -120,3 +120,10 @@ def test_schedules():
     schedule_map = ruz.schedules(lecturer_ids=[TRUSTED_LECTURER_ID],
                                  return_none_safe=False)
     assert isinstance(schedule_map, map)
+
+
+def test_find_by_str():
+    with pytest.raises(KeyError):
+        ruz.find_by_str("tmp", "some query")
+    with pytest.raises(NotImplementedError):
+        ruz.find_by_str(min, "some query")

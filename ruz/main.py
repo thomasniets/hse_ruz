@@ -181,8 +181,8 @@ def get(endpoint: str,
         logging.warning("Can't get '%s'.\n%s", url, err)
     return [] if return_none_safe else None
 
-# ===== API methods =====
 
+# ===== API methods =====
 
 def schedules(emails: Iterable=None,
               lecturer_ids: Iterable=None,
@@ -303,15 +303,6 @@ def streams(reset_cache: bool=False) -> list:
     return get("streams")
 
 
-def staff_of_streams(stream_id: int) -> list:
-    """
-        Return collection of the groups on study stream
-
-        :param stream_id, required - group' ID.
-    """
-    return get("staffOfStreams", streamOid=stream_id)
-
-
 def lecturers(chair_id: int=None) -> list:
     """
         Return collection of teachers
@@ -392,3 +383,61 @@ def sub_groups(reset_cache: bool=False) -> list:
         :param reset - use to reset cached value.
     """
     return get("subGroups")
+
+
+# ===== Additional methods =====
+
+def find_by_str(subject: str or Callable,
+                query: str,
+                by: str="name",
+                **params) -> list:
+    """
+        Linear search for subject by given text field (as query)
+
+        Search method is very straightforward. For more complex searches
+        use custom implementation.
+        Throws an exception:
+            * KeyError if no subject found.
+            * NotImplementedError if method is not implemented for subject.
+
+        :param subject - subject to find: possible variants:
+            * buildings: 'name', 'address', 'abbr';
+            * faculties: 'name', 'institute', 'abbr';
+            * sub_groups: 'name', 'group', 'abbr';
+            * streams: 'name', 'faculty', 'abbr', 'formOfEducation', 'course';
+            * type_of_auditoriums: 'name', 'abbr';
+            * kind_of_works: 'name', 'abbr';
+            * chairs: 'name', 'faculty', 'abbr';
+            * auditoriums: 'number', 'building', 'typeOfAuditorium';
+            * lecturers: 'chair', 'fio', 'shortFIO';
+            * groups: 'faculty', 'formOfEducation', 'number', 'speciality';
+            * staff_of_group: 'fio', 'shortFIO';
+            * person_lessons: 'building', 'date', 'beginLesson', 'auditorium',
+                'dateOfNest', 'dayOfWeekString', 'detailInfo', 'discipline',
+                'disciplineinplan', 'endLesson', 'kindOfWork', 'lecturer',
+                'stream'.
+        :param query - text query to find.
+        :param by - search field.
+    """
+    SUBJECTS = {
+        buildings.__name__: buildings,
+        faculties.__name__: faculties,
+        sub_groups.__name__: sub_groups,
+        streams.__name__: streams,
+        type_of_auditoriums.__name__: type_of_auditoriums,
+        kind_of_works.__name__: kind_of_works,
+        chairs.__name__: chairs,
+        auditoriums.__name__: auditoriums,
+        lecturers.__name__: lecturers,
+        groups.__name__: groups,
+        staff_of_group.__name__: staff_of_group,
+        person_lessons.__name__: person_lessons
+    }
+
+    if not isinstance(subject, Callable):
+        subject = SUBJECTS[subject]
+    elif subject.__name__ not in SUBJECTS.keys():
+        raise NotImplementedError(subject.__name__)
+
+    query = query.strip().lower()
+    return [el for el in subject(**params) if query in el[by].lower().strip()]

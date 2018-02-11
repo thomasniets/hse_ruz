@@ -14,4 +14,4 @@ from ruz.main import (auditoriums, buildings, chairs, faculties, find_by_str,
                       sub_groups, type_of_auditoriums)
 
 __author__ = "Dmitriy Pchelkin | hell03end"
-__version__ = (2, 0, 0)
+__version__ = (2, 0, 1)

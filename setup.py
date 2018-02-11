@@ -12,7 +12,7 @@ except ImportError:
 setup(
     name="hse_ruz",
     packages=packages,
-    version="2.0.0",
+    version="2.0.1",
     description="Python wrapper for HSE RUZ API",
     long_description=open(os.path.join(os.path.dirname(__file__),
                                        "README.rst")).read(),
@@ -23,8 +23,8 @@ setup(
     classifiers=[
         # "Development Status :: 1 - Planning",
         # "Development Status :: 2 - Pre-Alpha",
-        "Development Status :: 3 - Alpha",
-        # "Development Status :: 4 - Beta",
+        # "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         # "Development Status :: 5 - Production/Stable",
         # "Development Status :: 6 - Mature",
         # "Development Status :: 7 - Inactive",
@@ -50,8 +50,8 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
+        # "Programming Language :: Python :: 3.3",
+        # "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
@@ -63,5 +63,5 @@ setup(
     ],
     license="MIT License",
     platforms=["All"],
-    python_requires=">=3.3"
+    python_requires=">=3.5"
 )

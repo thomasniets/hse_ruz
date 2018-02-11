@@ -16,7 +16,7 @@ __ https://github.com/hell03end/hse_ruz/wiki/Changelog
 Requirements
 ------------
 
-* Python 3.3+ or PyPy3
+* Python >= 3.5 or latest PyPy3
 
 
 Installation

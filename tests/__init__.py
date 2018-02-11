@@ -13,7 +13,7 @@ logging.basicConfig(
     datefmt="%H:%M:%S"
 )
 
-__version__ = (2, 0, 0)
+__version__ = (2, 0, 1)
 
 # ===== Fixtures =====
 TRUSTED_EMAILS = {

@@ -17,7 +17,7 @@ branches:
 env:
 matrix:
   allow_failures:
-  - python:
+    python:
     - "3.3"
     - "3.4"
 

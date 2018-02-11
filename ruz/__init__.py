@@ -3,17 +3,17 @@
 
     Usage
     -----
-    from ruz import RUZ
-    api = RUZ()
-    assert api.v == 2
-    assert api.person_lessons("mymail@edu.hse.ru")
+    import ruz
+    assert ruz.person_lessons("mymail@edu.hse.ru")
 """
 
-import os
+from ruz.main import (auditoriums, buildings, chairs, faculties,
+                      get_formated_date, groups, is_hse_email, is_student,
+                      is_valid_hse_email, kind_of_works, lecturers,
+                      person_lessons, schedules, staff_of_group,
+                      staff_of_streams, streams, sub_groups,
+                      type_of_auditoriums)
 
-from ruz.RUZ import RUZ
-from ruz.utils import REQUEST_SCHEMA, RESPONSE_SCHEMA, EMAIL_DOMAINS
 
-__author__ = "hell03end"
-__version__ = (1, 1, 1)
-__all__ = ("RUZ", "REQUEST_SCHEMA", "RESPONSE_SCHEMA")
+__author__ = "Dmitriy Pchelkin | hell03end"
+__version__ = (2, 0, 0)

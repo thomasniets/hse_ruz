@@ -440,4 +440,5 @@ def find_by_str(subject: str or Callable,
         raise NotImplementedError(subject.__name__)
 
     query = query.strip().lower()
-    return [el for el in subject(**params) if query in el[by].lower().strip()]
+    return [el for el in subject(**params)
+            if query in (el[by].lower().strip() if el[by] else "")]
